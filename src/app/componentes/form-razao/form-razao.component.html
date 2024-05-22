@@ -1,0 +1,10 @@
+<form [formGroup]="form" class="display-flex">
+  <input type="text" pInputText placeholder="Fornecedor/Cliente" formControlName="nome" />
+</form>
+
+<p-divider></p-divider>
+
+<div class="space-between">
+  <p-button color="primary" (click)="onSubmit()"> Salvar </p-button>
+  <p-button severity="danger" (click)="onCancel()">Cancelar</p-button>
+</div>

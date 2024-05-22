@@ -1,0 +1,178 @@
+<div class="body">
+  <div class="linha">
+    <div class="header">
+      <h1
+        [ngClass]="{
+          'opcoes-selecionadas': true,
+          transacoes: opcoesSelecionadas === 'transacoes',
+          receita: opcoesSelecionadas === 'receita',
+          despesa: opcoesSelecionadas === 'despesa'
+        }"
+      >
+        {{ opcoesSelecionadas | titlecase }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="linha" *ngIf="opcoesSelecionadas === 'transacoes'">
+    <div class="card-grafico-rosca1">
+      <mat-card>
+        <app-tabela
+          [pedidos]="contatos"
+          filtro=""
+          (remove)="onRemove($event)"
+          (clickOpen)="showModal($event)"
+          (clickOpenEdit)="showModalEdit($event)"
+          (dateSelect)="onDateSelectRecebido($event)"
+          (clickAlterarSituacao)="alterarSituacao($event)"
+        ></app-tabela>
+      </mat-card>
+    </div>
+
+    <div class="card-grafico-rosca2">
+      <div class="cards-saldo">
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Saldo Atual'"
+            [soma]="saldoMes"
+            [icone]="'pi pi-wallet'"
+          ></app-saldo>
+        </div>
+
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Receitas'"
+            [soma]="somaReceita"
+            [icone]="'pi pi-arrow-up'"
+            [color]="'success'"
+          ></app-saldo>
+        </div>
+
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Despesas'"
+            [soma]="somaDespesa"
+            [icone]="'pi pi-arrow-down'"
+            [color]="'danger'"
+          ></app-saldo>
+        </div>
+
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Balanço Mensal'"
+            [soma]="saldoPrevisto"
+            [icone]="'pi pi-wallet'"
+            [color]="'warning'"
+          ></app-saldo>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="linha" *ngIf="opcoesSelecionadas === 'receita'">
+    <div class="card-grafico-rosca1">
+      <mat-card>
+        <app-tabela
+          [pedidos]="contatos"
+          filtro="receita"
+          (remove)="onRemove($event)"
+          (clickOpen)="showModal($event)"
+          (clickOpenEdit)="showModalEdit($event)"
+          (dateSelect)="onDateSelectRecebido($event)"
+          (clickAlterarSituacao)="alterarSituacao($event)"
+        ></app-tabela>
+      </mat-card>
+    </div>
+
+    <div class="card-grafico-rosca2">
+      <div class="cards-saldo">
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Receitas Recebidas'"
+            [soma]="receitaRecebidas"
+            [icone]="'pi pi-arrow-up'"
+            [color]="'success'"
+          ></app-saldo>
+        </div>
+
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Receitas Pendentes'"
+            [soma]="receitaPendente"
+            [icone]="'pi pi-arrow-down'"
+            [color]="'success'"
+          ></app-saldo>
+        </div>
+
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Total'"
+            [soma]="somaReceita"
+            [icone]="'pi pi-wallet'"
+            [color]="'success'"
+          ></app-saldo>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="linha" *ngIf="opcoesSelecionadas === 'despesa'">
+    <div class="card-grafico-rosca1">
+      <mat-card>
+        <app-tabela
+          [pedidos]="contatos"
+          filtro="despesa"
+          (remove)="onRemove($event)"
+          (clickOpen)="showModal($event)"
+          (clickOpenEdit)="showModalEdit($event)"
+          (dateSelect)="onDateSelectRecebido($event)"
+          (clickAlterarSituacao)="alterarSituacao($event)"
+        ></app-tabela>
+      </mat-card>
+    </div>
+
+    <div class="card-grafico-rosca2">
+      <div class="cards-saldo">
+        <div class="card-salado">
+          <app-saldo
+            [titulo]="'Despesas Pagas'"
+            [soma]="despesaPagas"
+            [icone]="'pi pi-arrow-up'"
+            [color]="'danger'"
+          ></app-saldo>
+        </div>
+
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Despesas Pendentes'"
+            [soma]="despesaPendente"
+            [icone]="'pi pi-arrow-down'"
+            [color]="'danger'"
+          ></app-saldo>
+        </div>
+
+        <div class="card-saldo">
+          <app-saldo
+            [titulo]="'Total'"
+            [soma]="somaDespesa"
+            [icone]="'pi pi-wallet'"
+            [color]="'danger'"
+          ></app-saldo>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="visible" [modal]="true">
+  <app-form-modal [pedido]="formData"> </app-form-modal>
+</p-dialog>
+<p-dialog [(visible)]="visibleEdit" [modal]="true">
+  <app-form-adicionar-remover-estoque
+    [formData]="formData"
+    (closeModal)="closeModal()"
+  >
+  </app-form-adicionar-remover-estoque>
+</p-dialog>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

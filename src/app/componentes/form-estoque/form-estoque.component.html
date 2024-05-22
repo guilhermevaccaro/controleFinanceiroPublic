@@ -1,0 +1,25 @@
+<form [formGroup]="form" class="display-flex">
+  <input
+    type="text"
+    pInputText
+    placeholder="Código produto"
+    formControlName="codigo"
+  />
+  <input type="text" pInputText placeholder="Produto" formControlName="nome" />
+  <small
+    class="p-error block center"
+    *ngIf="
+      (form.get('descricao')?.invalid && form.get('descricao')?.dirty) ||
+      (form.get('descricao')?.invalid && form.get('descricao')?.touched)
+    "
+  >
+    Descrição é obrigatória</small
+  >
+</form>
+
+<p-divider></p-divider>
+
+<div class="space-between">
+  <p-button color="primary" (click)="onSubmit()"> Salvar </p-button>
+  <p-button severity="danger" (click)="onCancel()">Cancelar</p-button>
+</div>

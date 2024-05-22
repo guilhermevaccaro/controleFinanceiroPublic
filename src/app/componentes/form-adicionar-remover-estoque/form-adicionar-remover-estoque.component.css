@@ -1,0 +1,24 @@
+.display-flex {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.mobile {
+  gap: 10px;
+}
+
+.form-mobile {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+

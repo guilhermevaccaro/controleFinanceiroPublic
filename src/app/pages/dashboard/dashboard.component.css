@@ -1,0 +1,67 @@
+.body {
+  position: relative;
+  margin: 0px 3%;
+}
+
+.header {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.conteudo-saldo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card-saldo {
+  flex: auto;
+}
+
+
+mat-card {
+  width: 98%;
+  border-radius: 20px;
+}
+
+mat-card-content {
+  padding: 20px !important
+}
+
+mat-card-title {
+  font-size: 2em;
+  font-weight: 500;
+  color: rgb(63, 63, 63);
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-grafico-rosca {
+  margin: 10px;
+  display: flex;
+  width: 50%;
+}
+
+@media screen and (max-width: 1370px) {
+  .linha {
+    display: block;
+    justify-content: space-between;
+  }
+
+  .card-grafico-rosca {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

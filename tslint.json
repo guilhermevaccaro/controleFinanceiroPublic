@@ -1,0 +1,16 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "rules": {
+    "no-unused-variable": true,
+    "no-unused-expression": true
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules",
+      "dist"
+    ]
+  }
+}

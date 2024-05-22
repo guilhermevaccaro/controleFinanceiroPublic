@@ -1,0 +1,50 @@
+<div *ngIf="dados;else noData">
+
+  <div *ngIf="filtro === ''">
+    <div class="card-grafico-barra">
+      <p-chart type="bar" [data]="data2" [options]="options"></p-chart>
+      <div class="texto">
+        <div class="coluna1">
+          <p class="">Receitas</p>
+          <p class="">Despesas</p>
+          <p-divider></p-divider>
+          <p class="">Balanço</p>
+        </div>
+        <div class="coluna2">
+          <p class="green ">R$ {{ somaReceita | number : "1.2-2" }}</p>
+          <p class="red ">R$ {{ somaDespesa | number : "1.2-2" }}</p>
+          <p-divider></p-divider>
+
+          <p class="">R$ {{ saldoPrevisto | number : "1.2-2" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-chart-container" *ngIf="filtro === 'receita'">
+    <p-chart type="doughnut" [data]="data" [options]="options" class="p-chart">
+    </p-chart>
+    <div class="centered-text">
+      <h1 *ngIf="filtro === 'receita'"> R$ {{ somaReceita | number : "1.2-2" }}
+      </h1>
+      <h2>Total</h2>
+    </div>
+  </div>
+
+  <div class="p-chart-container" *ngIf="filtro === 'despesa'">
+    <p-chart type="doughnut" [data]="data" [options]="options" class="p-chart">
+    </p-chart>
+    <div class="centered-text">
+      <h1 *ngIf="filtro === 'despesa'"> R$ {{ somaDespesa | number : "1.2-2" }}
+      </h1>
+      <h2>Total</h2>
+    </div>
+  </div>
+</div>
+<ng-template #noData class="noData">
+  <div class="noData">
+    <i class="pi pi-stopwatch" style="font-size: 2.5rem"></i>
+    <p>Ops! Você não possui dados nessa data</p>
+    <p>Adicione seus gastos no mês atual para obter gráficos!</p>
+  </div>
+</ng-template>

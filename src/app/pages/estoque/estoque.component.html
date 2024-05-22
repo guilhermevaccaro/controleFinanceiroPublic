@@ -1,0 +1,135 @@
+<mat-card
+  ><p-table
+    [value]="estoque"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    class="responsive-table"
+  >
+    <ng-template pTemplate="caption">
+      <p-button (click)="updateEstoque()">Update Estoque</p-button>
+      <p-button
+        label="Adicionar Peça ao Estoque"
+        icon="pi pi-plus"
+        (click)="showModal()"
+      ></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Código</th>
+        <th>Item</th>
+        <th>Quantidade</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          {{ product.codigo }}
+        </td>
+
+        <td>
+          {{ product.nome | titlecase }}
+        </td>
+        <td>
+          {{ product.quantidade }}
+        </td>
+
+        <td>
+          <p-button
+            icon="pi pi-pencil"
+            [rounded]="true"
+            [text]="true"
+            (click)="showModalEdit(product)"
+          >
+          </p-button>
+          <p-button
+            icon="pi pi-trash"
+            [rounded]="true"
+            [text]="true"
+            severity="danger "
+            (click)="confirm($event, product.id, 'estoque')"
+          >
+          </p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    [header]="'Estoque'"
+    [(visible)]="visible"
+    [modal]="true"
+    [closable]="false"
+  >
+    <app-form-estoque
+      [formData]="formData"
+      (close)="closeModal()"
+    ></app-form-estoque>
+  </p-dialog>
+</mat-card>
+<mat-card
+  ><p-table
+    [value]="fornecedor"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    class="responsive-table"
+  >
+    <ng-template pTemplate="caption">
+      <p-button
+        label="Adicionar Fornecedor / Cliente"
+        icon="pi pi-plus"
+        (click)="showModalRazao()"
+      ></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          {{ product.nome }}
+        </td>
+
+        <td>
+          <p-button
+            icon="pi pi-trash"
+            [rounded]="true"
+            [text]="true"
+            severity="danger "
+            (click)="confirm($event, product.id, 'fornecedor')"
+          >
+          </p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    [header]="'Estoque'"
+    [(visible)]="visible"
+    [modal]="true"
+    [closable]="false"
+  >
+    <app-form-estoque
+      [formData]="formData"
+      (closeModal)="closeModal()"
+    ></app-form-estoque>
+  </p-dialog>
+</mat-card>
+<div class="botao">
+  <p-dialog
+    [header]="'Razão'"
+    [(visible)]="visibleRazao"
+    [modal]="true"
+    [closable]="false"
+  >
+    <app-form-razao
+      [formData]="formData"
+      (closeModal)="closeModal()"
+    ></app-form-razao>
+  </p-dialog>
+
+  <p-toast />
+  <p-confirmDialog />
+</div>

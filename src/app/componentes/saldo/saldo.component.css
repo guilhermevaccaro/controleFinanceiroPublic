@@ -1,0 +1,33 @@
+.saldo {
+  display: flex;
+  gap: 20px;
+}
+
+mat-card {
+  width: 96%;
+  cursor: pointer;
+  border-radius: 20px;
+
+}
+
+mat-card:hover {
+  transition: 20ms;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-card-title {
+  color: rgb(90, 90, 90);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+mat-card-content {
+  font-weight: 500;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,152 @@
+<p-table
+  #dt1
+  [value]="pedidos"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  class="responsive-table"
+  [globalFilterFields]="['fornecedor.nome', 'situacao.nome', 'codigoPedido']"
+  (onFilter)="onTableFilter($event)"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th></th>
+      <th>Data</th>
+      <th>Pedido</th>
+      <th>Categoria</th>
+      <th>Valor</th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <form [formGroup]="form" class="form">
+        <p-calendar
+          formControlName="rangeDates"
+          selectionMode="range"
+          [readonlyInput]="true"
+          dateFormat="dd/mm/yy"
+          [inputStyle]="customInputStyle"
+          (onSelect)="emitDateSelect()"
+        ></p-calendar>
+      </form>
+      <div>
+        <p-button
+          label="Limpar"
+          class="p-button-outlined"
+          icon="pi pi-filter-slash"
+          (click)="clear(dt1)"
+        ></p-button>
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="onFilterGlobal($event, dt1)"
+            placeholder="Pesquisar"
+          />
+        </span>
+        <p-button
+          severity="danger"
+          icon="pi pi-file-pdf"
+          (click)="exportPdf()"
+          pTooltip="PDF"
+          tooltipPosition="bottom"
+        ></p-button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td style="padding-left: 40px">
+        <ng-container
+          *ngIf="product.situacao.nome === 'Efetivado'; else pendente"
+        >
+          <i
+            class="pi pi-check-circle green"
+            style="font-size: 1.2rem"
+            pTooltip="Efetivado"
+          ></i>
+        </ng-container>
+        <ng-template #pendente>
+          <i
+            class="pi pi-clock orange"
+            style="font-size: 1.2rem"
+            pTooltip="Pendente"
+          ></i>
+        </ng-template>
+      </td>
+      <td>{{ product.data | date : "dd/MM/yy" }}</td>
+
+      <td>
+        <p>{{ product.codigoPedido }}</p>
+        <p>{{ product.fornecedor.nome | titlecase }}</p>
+      </td>
+
+      <td>
+        <p>{{ product.categoria | titlecase }}</p>
+        {{ product.descricao }}
+      </td>
+
+      <td>
+        <ng-container *ngIf="product.tipo === 'despesa'; else receita">
+          <div class="red">R$ {{ product.valorTotal | number : "0.2" }}</div>
+        </ng-container>
+        <ng-template #receita>
+          <div class="green">R$ +{{ product.valorTotal | number : "0.2" }}</div>
+        </ng-template>
+      </td>
+
+      <td>
+        <p-button
+          icon="pi pi-info-circle"
+          [rounded]="true"
+          pTooltip="Info"
+          [text]="true"
+          (click)="abrindoModal(product)"
+        >
+        </p-button>
+        <p-button
+          icon="pi pi-trash"
+          [rounded]="true"
+          pTooltip="Excluir Pedido"
+          [text]="true"
+          severity="danger "
+          (click)="confirm($event, product)"
+        >
+        </p-button>
+        <ng-container
+          *ngIf="product.situacao.nome === 'Efetivado'; else pendente1"
+        >
+          <p-button
+            icon="pi pi-history"
+            [rounded]="true"
+            pTooltip="Tornar Pendente"
+            [text]="true"
+            severity="warning"
+            (click)="confirmSituacao($event, product)"
+          >
+          </p-button>
+        </ng-container>
+        <ng-template #pendente1>
+          <p-button
+            icon="pi pi-check"
+            [rounded]="true"
+            pTooltip="Efetivar"
+            [text]="true"
+            severity="success"
+            (click)="confirmSituacao($event, product)"
+          >
+          </p-button>
+        </ng-template>
+        <p-button
+          icon="pi pi-pencil"
+          severity="warning"
+          pTooltip="Editar Pedido"
+          [rounded]="true"
+          [text]="true"
+          (click)="abrindoModalPedido(product)"
+        >
+        </p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

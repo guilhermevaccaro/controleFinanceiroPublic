@@ -1,0 +1,155 @@
+h1 {
+  padding: 0 1rem;
+}
+
+h2 {
+  padding: 1rem;
+}
+
+.mat-warn {
+  color: #22c55e;
+}
+
+.red {
+  color: #ef4444;
+}
+
+.green {
+  color: #22c55e;
+}
+
+.orange {
+  color: orange;
+}
+
+.purple {
+  color: purple;
+}
+
+.background-purple {
+  background-color: purple;
+  color: white;
+  border: solid purple 2px;
+
+}
+
+.background-green {
+  background-color: #22c55e;
+  color: white;
+  border: solid #22c55e 2px;
+}
+
+
+
+.background-red {
+  background-color: #ef4444;
+  color: white;
+  border: solid #ef4444 2px;
+
+}
+
+.background-blue {
+  background-color: rgb(20, 20, 165);
+  color: white;
+  border: solid rgb(20, 20, 165) 2px;
+}
+
+.blue {
+  color: rgb(20, 20, 165);
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  min-width: 65px;
+
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+a {
+  height: 60px !important;
+
+}
+
+span {
+  color: grey;
+  padding: 5px;
+
+}
+
+.btn {
+  font-family: Roboto, sans-serif;
+  font-weight: 200;
+  font-size: 20px;
+  color: #fff;
+  padding: 15px 36px;
+  margin-left: 10px;
+  box-shadow: none;
+  border-radius: 50px;
+  transition: 288ms;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn:hover {
+
+  transition: 288ms;
+  transform: translateY(-0px);
+  background-color: #fff;
+  color: #0066cc;
+  border: solid 2px #0066cc;
+}
+
+.btn-collapsed {
+
+  font-family: Roboto, sans-serif;
+  font-weight: 200;
+  font-size: 20px;
+  /* color: #fff;
+  background-color: #0066CC; */
+  padding: 15px;
+  margin-left: 10px;
+  /* border: solid #0066cc 2px; */
+  box-shadow: none;
+  border-radius: 50px;
+  transition: 288ms;
+  display: flex;
+  cursor: pointer;
+}
+
+.btn-collapsed:hover {
+
+  transition: 288ms;
+  transform: translateY(-0px);
+  background-color: #fff;
+  color: #0066cc;
+  border: solid 2px #0066cc;
+}
+
+.fixed-bottom-right {
+  width: 56px; /* Largura do botão */
+  height: 56px; /* Altura do botão */
+  border-radius: 50%; /* Faz o botão ser redondo */  position: fixed;
+  bottom: 20px;
+  /* Ajuste conforme necessário */
+  right: 20px;
+  /* Ajuste conforme necessário */
+  z-index: 1000;
+  /* Certifique-se de que o botão fica acima de outros elementos */
+}
+.fixed-bottom-right:hover {
+
+  transition: 288ms;
+  transform: translateY(-0px);
+  background-color: #fff;
+  color: #0066cc;
+  border: solid 2px #0066cc;
+}

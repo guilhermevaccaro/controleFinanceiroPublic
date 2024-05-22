@@ -1,0 +1,100 @@
+.body {
+  height: 100vh;
+  position: relative;
+  margin: 0px 3%;
+}
+
+.header {
+  display: flex;
+  height: 150px;
+  align-items: flex-end;
+}
+
+.opcoes-selecionadas {
+  min-width: 165px;
+  text-align: center;
+  width: auto;
+  border-radius: 50px;
+  color: white;
+  padding: 20px;
+}
+
+.transacoes {
+  background-color: purple;
+}
+
+.receita {
+  background-color: #22c55e;
+}
+
+.despesa {
+  background-color: #ef4444;
+}
+
+.cards-saldo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.linha {
+  display: flex;
+}
+
+.card-grafico-rosca1 {
+  flex-grow: 2;
+}
+
+mat-card {
+  display: block;
+  width: 95% !important;
+}
+
+mat-card-header {
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.card-grafico-rosca2 {
+  display: flex;
+  flex-grow: 1.8;
+
+}
+
+@media screen and (max-width: 1370px) {
+  .linha {
+    display: block;
+    justify-content: space-between;
+  }
+
+  .card-grafico-rosca {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+
+    .grafico {
+      width: 98%;
+    }
+
+  }
+}
+
+
+
+.green {
+  color: rgb(0, 171, 0);
+}
+
+.orange {
+  color: orange;
+}
+
+
+@media only screen and (max-width: 1300px) {
+  .responsive-table {
+    max-width: 90%;
+  }
+}

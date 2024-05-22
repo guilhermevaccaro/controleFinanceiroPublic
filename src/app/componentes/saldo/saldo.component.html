@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{titulo}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    R$ {{ soma | number : "1.2-2" }}
+    <p-button icon="{{icone}}" [rounded]="true" severity="{{color}}"></p-button>
+  </mat-card-content>
+</mat-card>

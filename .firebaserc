@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "controle-financeiro-publico",
+    "teste": "controle-financeiro-publico"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

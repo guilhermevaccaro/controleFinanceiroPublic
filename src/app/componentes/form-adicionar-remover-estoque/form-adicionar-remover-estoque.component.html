@@ -1,0 +1,98 @@
+<form [formGroup]="form">
+  <div [ngClass]="{ 'display-flex': !isMobile, mobile: isMobile }">
+    <span class="p-float-label">
+      <input type="text" pInputText formControlName="codigoPedido" />
+      <label htmlFor="codigoPedido">Código do Pedido</label>
+    </span>
+
+    <p-calendar
+      placeholder="dd/mm/yyyy"
+      formControlName="data"
+      dateFormat="dd/mm/yy"
+      appendTo="body"
+      iconDisplay="input"
+      [showIcon]="true"
+    ></p-calendar>
+    <p-dropdown
+      appendTo="body"
+      [options]="situacaoOpcoes"
+      optionLabel="nome"
+      placeholder="Situação"
+      formControlName="situacao"
+      [showClear]="false"
+      class="full-width"
+    ></p-dropdown>
+  </div>
+  <div [ngClass]="{ 'display-flex': !isMobile }">
+    <p-dropdown
+      appendTo="body"
+      [options]="nome"
+      optionLabel="nome"
+      placeholder="Fornecedor / Cliente"
+      formControlName="fornecedor"
+      [showClear]="false"
+      class="full-widt"
+    ></p-dropdown>
+
+    <input
+      type="text"
+      pInputText
+      placeholder="Descrição"
+      formControlName="descricao"
+    />
+  </div>
+  <p-divider></p-divider>
+
+  <div
+    formArrayName="pecas"
+    *ngFor="let pecas of getPecasFormArray(); let i = index"
+  >
+    <div [formGroupName]="i" [ngClass]="{ 'display-flex': !isMobile }">
+      <p-dropdown
+        [filter]="true"
+        filterBy="nome, codigo"
+        appendTo="body"
+        [options]="estoque"
+        optionLabel="nome"
+        placeholder="Peça"
+        formControlName="item"
+        [showClear]="false"
+        class="teste"
+        (onChange)="selecionouPeca($event, i)"
+      ></p-dropdown>
+
+      <div>
+        <span class="p-float-label">
+          <p-inputNumber formControlName="quantidadeAdicionada"></p-inputNumber>
+          <label for="">Quantidade</label>
+        </span>
+      </div>
+      <div>
+        <span class="p-float-label">
+          <p-inputNumber
+            formControlName="valorUnitario"
+            mode="currency"
+            currency="BRL"
+            locale="pt-BR"
+            [title]="'Teste'"
+          ></p-inputNumber>
+          <label htmlFor="number-input">Valor Unitário</label>
+        </span>
+      </div>
+      <p-button
+        icon="pi pi-times"
+        [rounded]="true"
+        [text]="true"
+        severity="danger "
+        (onClick)="removerPeca(i)"
+      ></p-button>
+    </div>
+  </div>
+  <p-button (click)="addPeca(form.value)">Adicionar Peça</p-button>
+  <p-divider></p-divider>
+</form>
+
+<div class="space-between">
+  <p-button color="primary" (click)="onSubmit()"> Salvar </p-button>
+  <p-button severity="danger" (click)="onCancel()">Cancelar</p-button>
+</div>
